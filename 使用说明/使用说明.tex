@@ -1,0 +1,133 @@
+% -*- coding: utf-8 -*-
+% !TEX program = xelatex
+\documentclass{jnuthesis}
+\usepackage{amsmath}
+\usepackage{algorithmic}
+\usepackage{array}
+\usepackage{fixltx2e}
+\usepackage{stfloats}
+\usepackage{url}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{ctex}
+\usepackage{subfigure}
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage{booktabs}
+\usepackage{lscape}
+\usepackage{caption}
+\usepackage{xcolor}  
+\usepackage{tikz}  
+\usepackage{tikz,mathpazo}
+\usetikzlibrary{shapes.geometric, arrows}
+\usetikzlibrary{arrows,shapes,chains}  
+\usepackage{amsthm,amsmath,amssymb}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usetikzlibrary{positioning, shapes.geometric}
+\usetikzlibrary{calc}
+
+\tikzstyle{format}=[rectangle,draw,thin,fill=white]  
+%定义语句块的颜色,形状和边
+\tikzstyle{test}=[diamond,aspect=2,draw,thin]  
+%定义条件块的形状,颜色
+\tikzstyle{point}=[coordinate,on grid,]  
+\tikzstyle{startstop} = [rectangle, rounded corners,minimum height=0.7cm,text centered, draw=black, fill=red!30]
+\tikzstyle{io} = [trapezium, trapezium left angle=70, trapezium right angle=110,  minimum height=0.7cm, text centered, draw=black, fill=blue!30]
+\tikzstyle{process} = [rectangle,  minimum height=0.7cm, text centered, draw=black, fill=orange!30]
+\tikzstyle{decision} = [diamond, minimum height=0.7cm, text centered, draw=black, fill=green!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+
+
+
+\usepackage{subfigure}
+%\usepackage[backend=biber,style=gb7714-2015]{biblatex}
+%\usepackage[super]{gbt7714}
+\usepackage{gbt7714}
+\usepackage{titlesec}\titleclass{\chapter}{straight}
+\titleformat{\chapter}[hang]  {\huge\bfseries}{\arabic{chapter}}{1em}{}
+
+\usepackage{listings}
+\usepackage{xcolor} 
+\makeatletter
+\renewcommand{\maketag@@@}[1]{\hbox{\m@th\normalsize\normalfont#1}}%
+\makeatother
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\lstset{ %
+	backgroundcolor=\color{white},   % choose the background color
+	basicstyle=\footnotesize\ttfamily,        % size of fonts used for the code
+	columns=fullflexible,
+	breaklines=true,                 % automatic line breaking only at whitespace
+	captionpos=b,                    % sets the caption-position to bottom
+	tabsize=4,
+	commentstyle=\color{mygreen},    % comment style
+	escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+	keywordstyle=\color{blue},       % keyword style
+	stringstyle=\color{mymauve}\ttfamily,     % string literal style
+	frame=shadowbox,
+	rulesepcolor=\color{red!20!green!20!blue!20},
+	% identifierstyle=\color{red},
+	numbers=left, 
+	numberstyle=\tiny,
+	% escapeinside=' ',
+	xleftmargin=2em,
+	xrightmargin=2em, 
+	aboveskip=1em
+}
+
+\begin{document}
+
+\renewcommand{\title}{使用说明} % 英文标题
+\renewcommand{\biaoti}{使用说明}  % 中文标题
+\renewcommand{\xueyuan}{国际能源学院}
+\renewcommand{\zhuanye}{电气工程及其自动化}
+\renewcommand{\xingming}{余思贤}
+\renewcommand{\xuehao}{2018054439}
+\renewcommand{\daoshi}{莫维科}
+
+\chapter*{exe文件在dist文件夹中}
+\chapter{命令行调用}
+\begin{lstlisting} 
+	scihub.exe [-p=A] [-rn=B] [-st=C] [-rt=D] [-i=E] [-sci=F] [-m=G]
+\end{lstlisting}
+
+\textbf{参数解析：}
+\begin{enumerate}
+	\item p：存放doi文件路径，默认为scihub.exe同路径下的doi.exe
+	\item rn：是否使用错误重试，默认是True，接受参数为0或1，0为False，1为True
+	\item st：错误重试等待时间，默认30秒
+	\item rt：最大重试次数，默认5次
+	\item i：是否使用idm进行下载，若传入为False则使用原本的下载方式。默认True，接受参数为0或1，0为False，1为True
+	\item sci：选择link.txt文件中第几条scihub连接。默认为1（从0开始）
+	\item m：论文命名规则，默认使用doi命名。接受参数为0或1，0为使用文章标题命名，1为使用doi命名。
+\end{enumerate}
+
+\textbf{dome：}
+\begin{lstlisting}
+	scihub.exe --i=0 --rn=0 --p=C:\Users\VerNe\Desktop\新建文件夹\SciDownl-AutoCaptcha-master\dist\doi.txt
+\end{lstlisting}
+
+此命令为不使用idm，不使用错误重试，传入doi路径为C:\textbackslash Users\textbackslash V\\erNe\textbackslash Desktop\textbackslash 新建文件夹\textbackslash SciDownl-AutoCaptcha-master\textbackslash dist\textbackslash doi.txt
+
+\textbf{p的参数可以直接将文件拖入终端}
+
+\chapter{重新打包为exe}
+
+使用pyinstaller进行打包，在终端输入如下命令为：
+\begin{lstlisting} 
+	pyinstaller -F scihub.py
+\end{lstlisting}
+
+需要安装pyinstaller，安装命令：
+\begin{lstlisting} 
+	pip install pyinstaller
+\end{lstlisting}
+
+完成之后文件会生成在dist文件夹中。
+
+\textbf{建议新建ven仅安装需要的库，不然打包出来会非常非常大。}
+\end{document}
