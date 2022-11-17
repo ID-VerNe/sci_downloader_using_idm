@@ -5,7 +5,6 @@ import argparse
 import re
 import time
 
-# import chaojiying
 import os
 import requests
 import sys
